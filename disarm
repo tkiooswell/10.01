@@ -1,0 +1,68 @@
+//10.01
+#pragma once
+
+#include <iostream>
+using namespace std;
+
+#define FULL_DEF 25 
+
+
+class Stack {
+	int empty = -1, full = FULL_DEF; 
+	int upper; 
+	char* arr; 
+public:
+	Stack();
+	void push(char c) ; 
+	char pop(); 
+	void clear(); 
+	bool isEmpty(); 
+	bool isFull(); 
+	int getCount(); 
+	void show();
+};
+
+Stack::Stack() { 
+	arr = new char[full + 1];
+	upper = empty; 
+}
+
+void Stack::push(char c) {
+	if (isFull())
+		full++;
+	arr[++upper] = c;
+}
+
+char Stack::pop() {
+	if (!isEmpty()) {
+		return arr[upper - 1];
+		if (full > FULL_DEF)
+			full--;
+	}
+	else
+		return 0;
+}
+
+void Stack::clear() {
+	upper = empty;
+	full = FULL_DEF;
+}
+
+bool Stack::isEmpty() {
+	return upper == empty;
+}
+
+bool Stack::isFull() {
+	return upper == full;
+}
+
+int Stack::getCount() {
+	return upper + 1;
+}
+
+void Stack::show() {
+	for (int i = 0; i <= upper; i++) {
+		 cout << arr[i] << " ";
+	}
+	 cout << endl;
+}
